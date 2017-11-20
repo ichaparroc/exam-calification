@@ -1,0 +1,46 @@
+#include<iostream>
+#define N_PREG 60
+
+using namespace std;
+
+int main(void)
+{
+  int n_instancias,n_cursos,preg_curso[20],n_postulantes,nota_total,buenas_curso,puntero;
+  char clave[N_PREG];
+  char respuesta[N_PREG];
+  cout<<" PROGRAMA DE CALIFICACION DE EXAMENES POR CURSO "<<endl;
+  cout<<"================================================"<<endl<<endl;
+  cout<<"Ingrese la cantidad de cursos: ";cin>>n_cursos;
+  for(int i=0;i<n_cursos;i++)
+  {
+    cout<<"Cantidad de preguntas del curso "<<i<<" :";cin>>preg_curso[i];
+  }
+  cout<<"Ingrese la clave de respuestas: ";cin>>clave;
+  cout<<"Ingrese el nro de postulantes: ";cin>>n_postulantes;
+  for(int i=0;i<n_postulantes;i++)
+  {
+    cout<<"Ingrese Respuestas";cin>>respuesta;
+    nota_total=0;
+    puntero=0;
+    for(int j=0;j<n_cursos;j++)
+    {
+      buenas_curso=0;
+      for(int k=puntero;k<puntero+preg_curso[j];k++)
+      {
+        if(respuesta[k]==clave[k] || clave[k]=='*')
+        {
+          nota_total+=10;
+          buenas_curso++;
+        }
+        else
+          if(respuesta[k]=='_')
+            nota_total++;
+      
+        //cuando la clave dice *
+      }
+      cout<<";"<<(float)buenas_curso/preg_curso[j];
+      puntero+=preg_curso[j];
+    }
+    cout<<";"<<nota_total;
+  }
+}
